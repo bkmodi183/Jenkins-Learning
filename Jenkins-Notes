@@ -1,0 +1,8 @@
+Question:
+
+1. what is jenkins?
+2. Jnekins flow diagram that explained in the view.
+3. what is jenkins jobs?
+4. Difference between CI/CD(Continuos delivery) and CI/CD(Continuos Deployment)
+5. Deliver a project todo-app via creating a Jenkins job. -> here we understand that why docker-compose is useful (docker-compuse down and then docker-compose up)
+6. 
