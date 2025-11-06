@@ -5,4 +5,5 @@ Question:
 3. what is jenkins jobs?
 4. Difference between CI/CD(Continuos delivery) and CI/CD(Continuos Deployment)
 5. Deliver a project todo-app via creating a Jenkins job. -> here we understand that why docker-compose is useful (docker-compuse down and then docker-compose up)
-6. 
+6. Also in the project add the email id to get notification whenever the jenkins build is taken place.
+7. 
