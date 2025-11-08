@@ -2,7 +2,8 @@ Question:
 
 Lecture 1:
 
-1. what is jenkins?
+1. what is jenkins? is jenkins requires a dedicated server ? Can we say a jenkins server as master server because it acts as a master
+   server which build jobs and assign to mutiple other server that we declare in the agents.
 2. Jnekins flow diagram that explained in the view.
 3. what is jenkins jobs?
 4. Difference between CI/CD(Continuos delivery) and CI/CD(Continuos Deployment)
@@ -14,4 +15,24 @@ Lecture 1:
 
 Lecture 2:
 
-
+1. Created a declarative pipeline with stage code, build, push, test, deploy.
+2. Here code, build and test are Continuous Integration. push, deploy is continuous deplyoment and this whole makes a CI/CD pipeline.
+3. It depends on the devops engineer how many stages he want;s in the pipeline in order to manage the workflow smoothly. Here the 
+   mulitple stages owns some significance. Let's say if there is some issue in the build stage than the grovvy doen't move to next
+   stage until the broken stage fixed. 
+4. So CI-CD declarative pipeline are governed by Grovvy sytanx.
+5. Here what is "agent any" that we write in the very first line of the pipeline?
+6. Here we can run jobs to multiple servers but to do so first we need to add the rest of the servers as a user to master server i.e.
+   jenkins servers via ssh and label them. Also, we need to install java on each server beacuse jenkins server uses java api to
+   communicate and if the user or agent server don't have java installed they won't be able to fucntion as per the master commands.
+7.Steps to add the agent:
+  *. first go to .ssh folder into the master server. 
+  *. create ssh key-gen and copy the public key content.
+  *. go to .shh folder of agent server and add the public keys to the authorized keys file present in the ssh folder of agent.
+  *. Now go to the jenkins -> Dashboard -> nodes -> add node -> use cred as ssh keys -> add the private key from the master to the 
+     mentioned box and save.
+  *. Here even after performing serveral state the agent won't come online until you install the java in agent. Once you intall java
+     in the agent it will start coming as online and now master can allocate a job to agent. 
+ 8. Here if you are running a free style job then there is a different way to run the agent and if it's a declarative pipeline there
+    there is a different way.
+9. 
