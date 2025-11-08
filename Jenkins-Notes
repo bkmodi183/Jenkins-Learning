@@ -40,3 +40,4 @@ Lecture 2:
     have persmission to run the job withoud sudo command so add the user to the docker group and reboot. 
 11. Now create a freestyle project to run the djangi-todo-app on agent-1. At the time of configuration select the option to run on
     the connect agent to the master.
+12. Testing -------------
