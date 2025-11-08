@@ -38,4 +38,5 @@ Lecture 2:
 9.  At the time of setting up a agent we give a agent label. We can have multiple agents under a same lable.
 10. Before running any job on agent make sure it is online connected with master, java is installed, docker is installed and the user
     have persmission to run the job withoud sudo command so add the user to the docker group and reboot. 
-11.
+11. Now create a freestyle project to run the djangi-todo-app on agent-1. At the time of configuration select the option to run on
+    the connect agent to the master.
