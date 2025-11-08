@@ -1,9 +1,17 @@
 Question:
 
+Lecture 1:
+
 1. what is jenkins?
 2. Jnekins flow diagram that explained in the view.
 3. what is jenkins jobs?
 4. Difference between CI/CD(Continuos delivery) and CI/CD(Continuos Deployment)
-5. Deliver a project todo-app via creating a Jenkins job. -> here we understand that why docker-compose is useful (docker-compuse down and then docker-compose up).
+5. Deliver a project todo-app via creating a Jenkins job for continuous Delivery-> here we understand that why docker-compose is useful (docker-compuse down and then docker-compose up).
    Also in the project add the email id to get notification for every unstable build.
 7. Likewise build a todo-application project based on CD (Continuous deployment).
+8. Both the above project was based on jenkins free style.
+9. Jenkins Pipeline overview.
+
+Lecture 2:
+
+
