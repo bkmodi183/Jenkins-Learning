@@ -34,10 +34,12 @@ Lecture 2:
   *. Here even after performing serveral state the agent won't come online until you install the java in agent. Once you intall java
      in the agent it will start coming as online and now master can allocate a job to agent. 
  8. Here if you are running a free style job then there is a different way to run the agent and if it's a declarative pipeline there
-    there is a different way.
+    there is a diffe:q!
+
+rent way.
 9.  At the time of setting up a agent we give a agent label. We can have multiple agents under a same lable.
 10. Before running any job on agent make sure it is online connected with master, java is installed, docker is installed and the user
-    have persmission to run the job withoud sudo command so add the user to the docker group and reboot. 
+    have persmissioin to run the job withoud sudo command so add the user to the docker group and reboot. 
 11. Now create a freestyle project to run the djangi-todo-app on agent-1. At the time of configuration select the option to run on
     the connect agent to the master.
-12. Testing -------- 
+12. When to use Jenkins freestyle and when to use jenkins declarative pipeline. What are the use cases of both. 
