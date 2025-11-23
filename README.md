@@ -1,142 +1,143 @@
-# Jenkins-Learning
+# Jenkins Learning -- README
 
-# Jenkins – Lecture 1 Notes
+## 📘 Overview
+
+This README contains well‑structured notes from **Lecture 1 and Lecture
+2** of Jenkins learning.\
+It covers CI/CD concepts, Jenkins Master-Agent architecture, Freestyle
+jobs, Pipelines, and practical projects.
+
+------------------------------------------------------------------------
+
+# 🚀 Jenkins -- Lecture 1 Summary
 
 ## 1. What is Jenkins?
-Jenkins is an **open-source automation server** used for:
-- Continuous Integration (CI)
-- Continuous Delivery / Deployment (CD)
-- Automating build, test, and deployment pipelines
 
-It pulls code, builds, tests, creates artifacts (Docker images, JAR files), deploys applications, and sends notifications.
+Jenkins is an **open-source automation server** used for: - Continuous
+Integration (CI) - Continuous Delivery / Deployment (CD) - Automating
+build, test & deployment workflows
 
----
+It can: - Pull code\
+- Build applications\
+- Test applications\
+- Create artifacts (JAR, Docker image, etc.)\
+- Deploy apps\
+- Send notifications
+
+------------------------------------------------------------------------
 
 ## 1.1 Does Jenkins Require a Dedicated Server?
-Not mandatory, but **recommended** because Jenkins needs:
-- Stable uptime  
-- Continuous execution  
-- Plugin and job management  
-- Reliable environment  
 
-Jenkins can run on:
-- Local machine  
-- Virtual machine  
-- Cloud server  
-- Docker container  
-- Kubernetes pod  
+Not mandatory but **recommended** for: - Continuous uptime\
+- Better reliability\
+- Plugin & job management
 
----
+Jenkins can run on: - Local machine\
+- VM\
+- Cloud server\
+- Docker container\
+- Kubernetes pod
 
-## 1.2 Why is Jenkins Called a Master (Controller)?
-Jenkins uses a **Master/Agent architecture**:
+------------------------------------------------------------------------
 
-Jenkins Master (Controller)
-|
-| Schedules & assigns jobs
-v
-Jenkins Agents (Workers)
+## 1.2 Why Jenkins is Called Master/Controller?
 
+Jenkins uses **Master-Agent Architecture**.
 
-- **Master / Controller**: Manages jobs, scheduling, UI, plugins  
-- **Agents / Nodes**: Execute builds, tests, deployments  
+**Master/Controller** - Schedules jobs\
+- Manages UI & plugins\
+- Controls workflow
 
----
+**Agents/Nodes** - Execute builds, tests, deployments
 
-## 2. Jenkins Flow Diagram
+------------------------------------------------------------------------
 
-Developer → Push Code to GitHub → Jenkins Master (triggered via webhook/SCM polling) → Build Agent → Test Agent → Build Artifacts (e.g., Docker image) → Deploy to Server
+## 2. Jenkins Flow
 
+Developer → GitHub → Jenkins Master → Build Agent → Test Agent →
+Artifact → Deployment
 
----
+------------------------------------------------------------------------
 
 ## 3. What is a Jenkins Job?
-A **Jenkins Job** is a defined task that Jenkins executes.
 
-Types of Jobs:
-- Freestyle Job  
-- Pipeline Job (Jenkinsfile)  
-- Multi-Branch Pipeline  
-- Folder/Organized jobs  
+A Jenkins job is a **unit of work**, like: - Pulling code\
+- Building (Maven, npm, Docker)\
+- Testing\
+- Deployment\
+- Sending notifications
 
-A job may:
-- Pull code  
-- Build (Maven, npm, Gradle, Docker)  
-- Run tests  
-- Deploy applications  
-- Send notifications  
+Types: - Freestyle\
+- Pipeline\
+- Multi-branch pipeline\
+- Folder jobs
 
----
+------------------------------------------------------------------------
 
 ## 4. Continuous Delivery vs Continuous Deployment
 
-| Topic | Continuous Delivery | Continuous Deployment |
-|--------|-----------------------|--------------------------|
-| Deployment | Manual approval required | Fully automated |
-| Production Release | Human-triggered | Automatic |
-| Risk | Lower | Higher |
-| Summary | Auto-build & test, manual deploy | No manual step, auto deploy |
+  Topic                Continuous Delivery              Continuous Deployment
+  -------------------- -------------------------------- ------------------------
+  Deployment           Manual approval                  Fully automated
+  Production Release   Human-triggered                  Auto-triggered
+  Risk                 Lower                            Higher
+  Summary              Auto-build/test, manual deploy   Fully automated deploy
 
-**Continuous Delivery:** Deployment is ready but requires human approval.  
-**Continuous Deployment:** Each successful build directly goes to production automatically.
+------------------------------------------------------------------------
 
----
+## 5. Continuous Delivery Project (Todo App -- Freestyle)
 
-## 5. Continuous Delivery Project (Todo-App using Freestyle Job)
+Steps: 1. Pull GitHub code\
+2. Stop running containers\
+3. Rebuild & restart using Docker Compose\
+4. Send email alerts
 
-### Steps performed:
-1. Pull code from GitHub  
-2. Stop running containers  
-3. Rebuild and restart services using Docker Compose  
-4. Send email for unstable/failed builds  
+Commands:
 
-### Commands used:
-```bash
+``` bash
 docker-compose down
 docker-compose up -d --build
+```
 
-Why Docker Compose?
+### Why Docker Compose?
 
-* Manages multiple containers (frontend, backend, DB)
-* Easy orchestration
-* Good for staging/production CD workflows
+-   Multi-container orchestration\
+-   Easy staging/production setup
 
-6. Email Notifications Setup
+------------------------------------------------------------------------
 
-Using the Email Extension Plugin:
+## 6. Email Notifications
 
-* Configure SMTP (sender email)
-* Add recipient list
-* Add "Editable Email Notification" in Post-Build Actions
-* Trigger emails on:
-  * Failed builds
-  * Unstable builds
-  * Successful recovery
+Using Email Extension Plugin: - Configure SMTP\
+- Add recipients\
+- Add Editable Email Notification\
+- Trigger on failed/unstable builds
 
-7. Continuous Deployment Project (Todo-App using Freestyle Job)
+------------------------------------------------------------------------
 
-In Continuous Deployment Everything is fully automated and No manual intervention is required
-Flow: Git push → Jenkins Job → Build → docker-compose down/up → Auto deploy to production
+## 7. Continuous Deployment Project (Todo App -- Freestyle)
 
-8. Both Projects Used Freestyle Jobs
+Fully automated deployment: Git Push → Jenkins → Build → Docker Compose
+→ Deploy automatically
 
-* Continuous Delivery (CD) → Freestyle
-* Continuous Deployment (CD) → Freestyle
-* Pipelines were not used in these two projects
+Both projects used **Freestyle Jobs**.
 
-9. Jenkins Pipeline Overview
+------------------------------------------------------------------------
 
-A Jenkins Pipeline is a code-based CI/CD process written in a Jenkinsfile.
+## 8. Jenkins Pipeline Overview
 
-Benefits:
-* Version controlled
-* Multi-stage workflows
-* Parallel execution
-* Better error handling
-* Reproducible & maintainable
+Pipelines use Jenkinsfile (Groovy syntax).
 
-Sample Declarative Pipeline
+### Benefits:
 
+-   Version-controlled\
+-   Multi-stage\
+-   Parallel execution\
+-   More reliable & maintainable
+
+### Sample Declarative Pipeline:
+
+``` groovy
 pipeline {
     agent any
 
@@ -146,13 +147,11 @@ pipeline {
                 git 'https://github.com/user/todo-app.git'
             }
         }
-
         stage('Build') {
             steps {
                 sh 'docker-compose build'
             }
         }
-
         stage('Deploy') {
             steps {
                 sh 'docker-compose down'
@@ -161,91 +160,109 @@ pipeline {
         }
     }
 }
+```
 
-| Concept               | Explanation                           |
-| --------------------- | ------------------------------------- |
-| Jenkins               | Automation server for CI/CD           |
-| Dedicated Server      | Optional but recommended              |
-| Master/Agent          | Master controls, agents build         |
-| Job                   | Unit of work (build/test/deploy)      |
-| Continuous Delivery   | Auto build/test, manual deploy        |
-| Continuous Deployment | Fully automated deploy                |
-| CD Project            | docker-compose down/up + email alerts |
-| Deployment Project    | Fully automated deployment            |
-| Pipeline              | Jenkinsfile-based CI/CD process       |
+------------------------------------------------------------------------
 
-# Jenkins – Lecture 2 Notes
+# 🧩 Jenkins -- Lecture 2 Summary
 
-1. Created a **Declarative Pipeline** with stages:
-   * code
-   * build
-   * push
-   * test
-   * deploy
+## 1. Declarative Pipeline Stages Created
 
-2. In this pipeline:
-   * **code, build, test** → Continuous Integration  
-   * **push, deploy** → Continuous Deployment  
-   Together these stages form a complete **CI/CD pipeline**.
+-   code\
+-   build\
+-   push\
+-   test\
+-   deploy
 
-3. The number of stages in a pipeline depends on the DevOps engineer.  
-   Each stage has importance.  
-   - If a stage fails (for example, the build stage), the Groovy script **does not move** to the next stage until the issue is fixed.  
-   - This prevents broken code from being deployed.
+**CI** = code + build + test\
+**CD** = push + deploy
 
-4. CI/CD Declarative Pipelines are governed by **Groovy syntax** written inside the `pipeline { }` block of a Jenkinsfile.
+------------------------------------------------------------------------
 
-5. **What is `agent any`?**  
-   - It means the pipeline can run on **any available agent** connected to the Jenkins master.  
-   - Jenkins automatically selects a suitable agent to run the job.
+## 2. Pipelines use Groovy Syntax
 
-6. Jenkins allows running jobs on multiple servers, but before that:
-   - You must add each agent/server to the Jenkins master via **SSH**.
-   - Install **Java** on each agent because Jenkins uses Java APIs to communicate.
-   - Without Java, an agent cannot connect or respond to master commands.
+Inside:
 
-7. **Steps to add an Agent:**
-   * Go to the `.ssh` folder on the master server.
-   * Generate an SSH key using `ssh-keygen` and copy the **public key**.
-   * Go to the `.ssh` folder on the agent server and paste the public key inside the `authorized_keys` file.
-   * In Jenkins: Dashboard → Nodes → Add Node  
-     - Choose SSH credentials  
-     - Add the **private key** copied from the master
-   * The agent may still show “offline” until **Java is installed on the agent**.  
-     After installing Java, the agent will come online and can execute jobs.
+``` groovy
+pipeline { }
+```
 
-8. Running jobs on agents:
-   * For **Freestyle Jobs** → Selecting agents is done via job configuration (restrict execution to a label).  
-   * For **Declarative Pipelines** → Agents are selected using `agent { label 'label-name' }`.
+------------------------------------------------------------------------
 
-9. When setting up an agent, we assign an **Agent Label**.  
-   - Multiple agents can share the same label.  
-   - Jenkins can distribute jobs among agents with the same label.
+## 3. What is `agent any`?
 
-10. Before running a job on an agent, ensure:
-    * The agent is **online** and connected to Jenkins master  
-    * **Java** is installed  
-    * **Docker** is installed  
-    * The user has permission to run Docker without `sudo`  
-      - Add the user to the `docker` group  
-      - Reboot the machine
+Jenkins selects any available agent for the pipeline.
 
-11. Created a Freestyle Job to run the **django-todo-app** on **agent-1**.  
-    - In the project configuration, select the option to run the job on the connected agent.
+------------------------------------------------------------------------
 
-12. When to Use Jenkins Freestyle vs Declarative Pipeline:
+## 4. Running Jobs on Agents
 
-    **Freestyle Jobs:**
-    * Simple automation
-    * Beginners
-    * Quick tests
-    * Small projects or single-step tasks
-    * GUI-based configuration
+Before running jobs: - Add agent to Jenkins via SSH\
+- Install Java on agents\
+- Install Docker on agents\
+- Add user to Docker group
 
-    **Declarative Pipelines (Jenkinsfile):**
-    * Complex CI/CD workflows
-    * Multi-stage processes  
-    * Version-controlled pipelines  
-    * Reproducible and auditable builds  
-    * Best for production deployments  
-    * Required when working with teams and Git-driven automation
+------------------------------------------------------------------------
+
+## 5. Steps to Add an Agent
+
+1.  Generate SSH keys on master\
+2.  Copy public key → agent's `authorized_keys`\
+3.  Add node in Jenkins\
+4.  Add private key via SSH credentials\
+5.  Install Java on agent\
+6.  Agent comes online
+
+------------------------------------------------------------------------
+
+## 6. Labels
+
+Each agent can have a **label**, used to run jobs on specific nodes.
+
+Freestyle: choose label in settings\
+Pipeline:
+
+``` groovy
+agent { label 'agent-1' }
+```
+
+------------------------------------------------------------------------
+
+## 7. Freestyle Job Example
+
+Django Todo App running on **agent-1**.
+
+------------------------------------------------------------------------
+
+## 8. Freestyle vs Declarative Pipeline
+
+### Freestyle
+
+-   Beginner-friendly\
+-   GUI-based\
+-   Simple tasks\
+-   Quick automation
+
+### Pipeline (Jenkinsfile)
+
+-   Production-grade\
+-   Multi-stage workflows\
+-   Version-controlled\
+-   Team friendly\
+-   Best for CI/CD
+
+------------------------------------------------------------------------
+
+# 🌟 Conclusion
+
+This README summarizes: - Jenkins CI/CD concepts\
+- Master-Agent architecture\
+- Freestyle jobs\
+- Pipelines\
+- Practical CD & deployment workflows\
+- Agent setup\
+- Pipeline stages
+
+Perfect for students and DevOps beginners practicing Jenkins.
+
+------------------------------------------------------------------------
