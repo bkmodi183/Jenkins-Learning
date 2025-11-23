@@ -1,45 +1,34 @@
-Question:
+Lecture 1
 
-Lecture 1:
+1. What is Jenkins? Does Jenkins require a dedicated server? Can we call a Jenkins server the master server because it builds jobs and assigns them to multiple other servers configured as agents?
+2. Explain the Jenkins flow diagram demonstrated during the session.
+3. What is a Jenkins Job?
+4. What is the difference between Continuous Delivery (CD) and Continuous Deployment (CD)?
+5. Deliver the Todo-App project using a Jenkins job for Continuous Delivery. Explain why Docker Compose is useful (using docker-compose down and then docker-compose up). Also configure email notifications to receive alerts for every unstable build.
+6. Deliver the Todo-App project using Continuous Deployment (CD).
+7. Both the above projects were implemented using Jenkins Freestyle jobs.
+8. Provide an overview of Jenkins Pipelines.
 
-1. what is jenkins? is jenkins requires a dedicated server ? Can we say a jenkins server as master server because it acts as a master
-   server which build jobs and assign to mutiple other server that we declare in the agents.
-2. Jnekins flow diagram that explained in the view.
-3. what is jenkins jobs?
-4. Difference between CI/CD(Continuos delivery) and CI/CD(Continuos Deployment)
-5. Deliver a project todo-app via creating a Jenkins job for continuous Delivery-> here we understand that why docker-compose is useful (docker-compuse down and then docker-compose up).
-   Also in the project add the email id to get notification for every unstable build.
-7. Likewise build a todo-application project based on CD (Continuous deployment).
-8. Both the above project was based on jenkins free style.
-9. Jenkins Pipeline overview.
-
-Lecture 2:
-
-1. Created a declarative pipeline with stage code, build, push, test, deploy.
-2. Here code, build and test are Continuous Integration. push, deploy is continuous deplyoment and this whole makes a CI/CD pipeline.
-3. It depends on the devops engineer how many stages he want;s in the pipeline in order to manage the workflow smoothly. Here the 
-   mulitple stages owns some significance. Let's say if there is some issue in the build stage than the grovvy doen't move to next
-   stage until the broken stage fixed. 
-4. So CI-CD declarative pipeline are governed by Grovvy sytanx.
-5. Here what is "agent any" that we write in the very first line of the pipeline?
-6. Here we can run jobs to multiple servers but to do so first we need to add the rest of the servers as a user to master server i.e.
-   jenkins servers via ssh and label them. Also, we need to install java on each server beacuse jenkins server uses java api to
-   communicate and if the user or agent server don't have java installed they won't be able to fucntion as per the master commands.
-7.Steps to add the agent:
-  *. first go to .ssh folder into the master server. 
-  *. create ssh key-gen and copy the public key content.
-  *. go to .shh folder of agent server and add the public keys to the authorized keys file present in the ssh folder of agent.
-  *. Now go to the jenkins -> Dashboard -> nodes -> add node -> use cred as ssh keys -> add the private key from the master to the 
-     mentioned box and save.
-  *. Here even after performing serveral state the agent won't come online until you install the java in agent. Once you intall java
-     in the agent it will start coming as online and now master can allocate a job to agent. 
- 8. Here if you are running a free style job then there is a different way to run the agent and if it's a declarative pipeline there
-    there is a diffe:q!
-
-rent way.
-9.  At the time of setting up a agent we give a agent label. We can have multiple agents under a same lable.
-10. Before running any job on agent make sure it is online connected with master, java is installed, docker is installed and the user
-    have persmissioin to run the job withoud sudo command so add the user to the docker group and reboot. 
-11. Now create a freestyle project to run the djangi-todo-app on agent-1. At the time of configuration select the option to run on
-    the connect agent to the master.
-12. When to use Jenkins freestyle and when to use jenkins declarative pipeline. What are the use cases of both. 
+Lecture 2
+1. Create a Declarative Pipeline with the following stages: code, build, push, test, deploy.
+2. Explain how code, build, and test belong to Continuous Integration (CI), and push and deploy belong to Continuous Deployment (CD), together forming 
+   a complete CI/CD pipeline.
+3. The number of stages in a pipeline depends on the DevOps engineer. Each stage has significance. For example, if the build stage encounters an issue, 
+   the Groovy script will not proceed to the next stage until the issue is fixed.
+4. Explain how CI/CD Declarative Pipelines are governed by Groovy syntax.
+5. What is the purpose of writing "agent any" at the beginning of a Declarative Pipeline?
+6. Jenkins can run jobs on multiple servers, but to do this we must first add the other servers as agents via SSH and assign them labels. 
+   Java must be installed on every agent server because Jenkins uses Java APIs to communicate. Without Java, the agent cannot function or 
+   execute commands issued by the master.
+7. Steps to add an agent:
+   - Go to the .ssh folder on the master server.
+   - Generate SSH keys and copy the public key.
+   - Go to the .ssh folder on the agent server and add the public key to the authorized_keys file.
+   - In Jenkins, go to Dashboard → Nodes → Add Node → choose SSH credentials → add the private key from the master and save.
+   - The agent will remain offline until Java is installed. After installing Java, the agent will come online and the master can assign jobs to it.
+8. There is a different method to assign agents for Freestyle jobs and a different method for Declarative Pipelines.
+9. When setting up an agent, we assign an agent label. Multiple agents can share the same label.
+10. Before running any job on an agent, ensure that the agent is online, Java is installed, Docker is installed, and the user has permission to run Docker without 
+    sudo (by adding the user to the docker group and rebooting).
+11. Create a Freestyle project to run the Django Todo-App on agent-1. During configuration, select the option to run the job on the connected agent.
+12. Explain when to use Jenkins Freestyle jobs and when to use Jenkins Declarative Pipelines. Describe the use cases for both.
