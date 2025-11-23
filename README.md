@@ -2,8 +2,7 @@
 
 ## 📘 Overview
 
-This README contains well‑structured notes from **Lecture 1 and Lecture
-2** of Jenkins learning.\
+This README contains well‑structured notes of Jenkins learning.\
 It covers CI/CD concepts, Jenkins Master-Agent architecture, Freestyle
 jobs, Pipelines, and practical projects.
 
