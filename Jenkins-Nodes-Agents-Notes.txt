@@ -1,0 +1,73 @@
+------------------------------------------------------------------------------------------------------------------
+
+1. Jenkins Nodes and Agents
+
+Jenkins uses a Master–Agent (Master–Slave) architecture to manage and execute CI/CD jobs efficiently. 
+In this architecture, the Jenkins Master acts as the central control unit, while Jenkins Agents (also 
+called Nodes) perform the actual job execution.
+
+The Jenkins Master (Controller) is the main server that handles user requests coming from the Jenkins 
+UI, CLI, or API. It manages job configurations, pipelines, plugins, credentials, and schedules jobs. 
+The master decides which job should run on which agent based on labels and availability. Usually, the 
+master does not execute heavy build tasks.
+
+Jenkins Agents (Nodes) are worker machines connected to the Jenkins Master. These agents are responsible 
+for executing build, test, and deployment jobs assigned by the master. Agents help distribute the workload, 
+allow parallel job execution, and provide isolated environments for different tasks.
+
+Agents can be assigned labels such as dev, test, and prod. Labels are used to control where a job runs. 
+For example, development jobs can run on dev agents, testing jobs on test agents, and production jobs on
+prod agents.
+
+------------------------------------------------------------------------------------------------------------------
+
+Workflow of Master–Agent Architecture:
+
+The user triggers a job from Jenkins. The Jenkins Master receives the request and schedules the job. 
+Based on the job configuration and labels, the master selects an appropriate agent. The selected agent 
+executes the job and sends the build results back to the master.
+------------------------------------------------------------------------------------------------------------------
+
+Architecture Diagram (Logical Representation):
+
+           User
+            |
+            v
+   ---------------------
+   | Jenkins Master   |
+   | (Controller)     |
+   ---------------------
+        /      |      \
+       /       |       \
+      v        v        v
+ ---------  ---------  -------------
+ | Agent   | | Agent   | | Agent   |
+ | (dev)   | | (test)  | | (prod)  |
+ ---------  ---------  -------------
+
+------------------------------------------------------------------------------------------------------------------
+
+* User sends commands to Jenkins Master.
+* Jenkins Master is connected to three worker nodes.
+* Worker Node 1 is labeled dev.
+* Worker Node 2 is labeled test.
+* Worker Node 3 is labeled prod.
+
+------------------------------------------------------------------------------------------------------------------
+
+2. Advantages of Jenkins Nodes and Agents:
+
+* Jobs can run in parallel, reducing build time.
+* Workload is distributed, preventing master overload.
+* Supports multiple environments like dev, test, and prod.
+* Easy to scale by adding more agents.
+* Jenkins master can be rebooted or upgraded without affecting running jobs on agent nodes.
+
+------------------------------------------------------------------------------------------------------------------
+
+Summary:
+Jenkins Master manages and schedules jobs, while agents execute them. Using multiple labeled agents 
+improves scalability, performance, stability, and maintenance flexibility in CI/CD pipelines.
+
+------------------------------------------------------------------------------------------------------------------
+
