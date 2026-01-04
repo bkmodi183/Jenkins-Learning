@@ -47,9 +47,9 @@ Real-life example:
                         Arpit → viewer
 
 Now:
-* Alice can configure Jenkins and manage jobs
-* Bob can run jobs and see build results
-* Charlie can only view job status
+* Bhavesh can configure Jenkins and manage jobs
+* Ayush can run jobs and see build results
+* Aepit can only view job status
 
 ------------------------------------------------------------------------------------------------------------------
 Summary:
