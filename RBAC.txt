@@ -1,0 +1,46 @@
+------------------------------------------------------------------------------------------------------------------
+                                 RBAC in Jenkins (Role-Based Access Control)
+------------------------------------------------------------------------------------------------------------------
+What it is:
+RBAC is a way to control who can do what in Jenkins. Instead of giving everyone full access, 
+you create roles with specific permissions and assign them to users.
+
+------------------------------------------------------------------------------------------------------------------
+Why it’s important:
+It improves security and makes sure people only access what they need. For example, developers 
+can run jobs but not change system settings, while admins can manage everything.
+
+------------------------------------------------------------------------------------------------------------------
+Real-life example:
+
+1. Install Role Strategy Plugin
+   Go to Manage Jenkins → Manage Plugins → Available → Role Strategy Plugin → Install
+
+2. Create Roles
+   Go to Manage Jenkins → Manage and Assign Roles → Manage Roles
+   Example roles:
+                admin → Full access
+                developer → Can build jobs but not delete them
+                viewer → Can only view jobs
+
+3. Create Users
+   Go to Manage Jenkins → Manage Users → Create User
+   Example users: Bhavesh, Ayush, Arpit
+
+4. Assign Roles to Users
+   Go to Manage and Assign Roles → Assign Roles
+   Assign roles to users:
+                        Bhavesh → admin
+                        Ayush → developer
+                        Arpit → viewer
+
+Now:
+* Alice can configure Jenkins and manage jobs
+* Bob can run jobs and see build results
+* Charlie can only view job status
+
+------------------------------------------------------------------------------------------------------------------
+Summary:
+
+RBAC lets you control who can do what in Jenkins by creating roles and assigning them to users based on their responsibilities.
+------------------------------------------------------------------------------------------------------------------
