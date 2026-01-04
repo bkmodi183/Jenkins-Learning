@@ -11,6 +11,18 @@ It improves security and makes sure people only access what they need. For examp
 can run jobs but not change system settings, while admins can manage everything.
 
 ------------------------------------------------------------------------------------------------------------------
+Plugin Requirement:
+
+* Plugin Name: Role Strategy Plugin
+* Purpose: Allows you to create roles (like admin, developer, viewer), assign permissions to these roles, and then 
+  assign roles to users or groups.
+
+* How to install:
+  Go to Manage Jenkins → Manage Plugins → Available
+  Search for Role Strategy Plugin
+  Click Install without restart (or restart if needed)
+
+------------------------------------------------------------------------------------------------------------------
 Real-life example:
 
 1. Install Role Strategy Plugin
