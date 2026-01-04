@@ -1,0 +1,35 @@
+------------------------------------------------------------------------------------------------------------------
+
+1. How Jenkins Master Connects to a Node Using SSH ?
+
+Jenkins Master connects to a node (agent) using SSH to execute jobs remotely in a secure manner.
+-----------------------------------------------------------------------------------------------------------------
+First, an SSH key pair is created. The private key is stored securely on the Jenkins Master inside
+Jenkins Credentials Manager. The public key is placed on the agent node in the ~/.ssh/authorized_keys file.
+
+------------------------------------------------------------------------------------------------------------------
+                          Importance of Java Installed on the Nodes/Agents
+
+Java installation is mandatory on the agent node because Jenkins agents run as a Java process. Without Java installed, 
+the Jenkins agent cannot start or communicate with the Jenkins Master.
+
+------------------------------------------------------------------------------------------------------------------
+Next, the SSH credentials are configured in Jenkins. While adding a new node, the administrator provides the 
+agent’s hostname or IP address, SSH port (default 22), username, and the stored SSH credentials.
+
+------------------------------------------------------------------------------------------------------------------
+When the node is launched, Jenkins Master uses the SSH plugin to establish an SSH connection to the agent node
+using the provided credentials.
+
+------------------------------------------------------------------------------------------------------------------
+After a successful connection, the Jenkins Master starts the Jenkins agent process (agent.jar) on the node.
+
+------------------------------------------------------------------------------------------------------------------
+Once the agent is running, it listens for instructions from the Jenkins Master. The master assigns jobs to 
+the agent, the agent executes the jobs in its workspace, and then sends the build results back to the master.
+
+------------------------------------------------------------------------------------------------------------------
+Summary:
+Jenkins Master uses SSH keys to securely connect to agent nodes, start the agent process, and execute jobs remotely.
+
+------------------------------------------------------------------------------------------------------------------
