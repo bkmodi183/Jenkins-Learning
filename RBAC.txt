@@ -49,7 +49,7 @@ Real-life example:
 Now:
 * Bhavesh can configure Jenkins and manage jobs
 * Ayush can run jobs and see build results
-* Aepit can only view job status
+* Arpit can only view job status
 
 ------------------------------------------------------------------------------------------------------------------
 Summary:
